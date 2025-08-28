@@ -1,28 +1,58 @@
-/* Layout blog */
+/* Section blog wrapper */
 #blog {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  margin: 40px 0;
+  max-width: 1200px; /* batasi lebar biar gak terlalu melebar */
+  margin: 0 auto; /* center section */
+  padding: 50px 20px;
 }
 
-/* Card blog */
+/* Judul blog */
+#blog h2 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #f97316; /* warna oranye (Tailwind orange-500) */
+}
+
+/* Grid layout blog */
+#blog .blog-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* Blog card */
 .blog-card {
-  background: #fff;
+  background: #1f2937; /* gray-900 */
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer; /* agar terlihat bisa diklik */
 }
 
 .blog-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
 }
 
-/* Foto blog */
 .blog-card img {
   width: 100%;
-  height: 200px; /* seragam tingginya */
-  object-fit: cover; /* biar foto tidak gepeng */
-  display: block;
+  height: auto;
+  max-height: 350px; /* batasi biar gak terlalu panjang */
+  object-fit: contain;
+}
+
+/* Konten blog */
+.blog-card h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 16px 0 8px;
+  color: #fff;
+}
+
+.blog-card p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #d1d5db; /* gray-300 */
 }
