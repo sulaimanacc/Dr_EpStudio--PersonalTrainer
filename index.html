@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Personal Trainer - Sulaiman</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tambahkan AOS CSS di <head> -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   </head>
   <body class="bg-black text-white font-sans">
     <!-- Navbar -->
@@ -21,11 +23,40 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="h-screen flex flex-col justify-center items-center text-center bg-cover bg-center" style="background-image: url(image/POSTER.jpg);">
-      <h1 class="text-4xl md:text-6xl font-bold mb-6">Bangun Tubuh Ideal & Hidup Sehat Bersama<br /><span class="text-orange-500">Personal Trainer Profesional</span></h1>
-      <p class="text-lg md:text-xl mb-6">Program latihan personal sesuai tujuanmu</p>
-      <a href="#program" class="bg-orange-500 px-6 py-3 rounded-lg font-semibold">Mulai Sekarang</a>
+    <section id="home" class="relative h-screen flex flex-col justify-center items-center text-center bg-cover bg-center" style="background-image: url(image/POSTER.jpg)">
+      <!-- Overlay Blur & Gelap -->
+      <div id="heroOverlay" class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-all duration-300"></div>
+
+      <!-- Konten -->
+      <div class="relative z-10 px-4">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">
+          Bangun Tubuh Ideal & Hidup Sehat Bersama<br />
+          <span class="text-orange-500">Personal Trainer Profesional</span>
+        </h1>
+        <p class="text-lg md:text-xl mb-6 text-gray-200">Program latihan personal sesuai tujuanmu</p>
+        <a href="#program" class="bg-orange-500 px-6 py-3 rounded-lg font-semibold">Mulai Sekarang</a>
+      </div>
+
+      <!-- Tombol Pengaturan Overlay -->
+      <div class="absolute top-4 right-4 z-20 flex space-x-2">
+        <button onclick="setOverlay('light')" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/40 hover:bg-white/ text-black">☀️</button>
+        <button onclick="setOverlay('medium')" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/40 hover:bg-white/60 text-black">✨</button>
+        <button onclick="setOverlay('dark')" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/40 hover:bg-white/60 text-black">🌙</button>
+      </div>
     </section>
+
+    <script>
+      function setOverlay(level) {
+        const overlay = document.getElementById("heroOverlay");
+        if (level === "light") {
+          overlay.className = "absolute inset-0 bg-black/30 backdrop-blur-sm transition-all duration-300";
+        } else if (level === "medium") {
+          overlay.className = "absolute inset-0 bg-black/50 backdrop-blur-md transition-all duration-300";
+        } else if (level === "dark") {
+          overlay.className = "absolute inset-0 bg-black/70 backdrop-blur-lg transition-all duration-300";
+        }
+      }
+    </script>
 
     <!-- Program Section -->
     <section id="program" class="py-20 px-8 bg-gray-950">
@@ -50,18 +81,30 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 px-8 flex flex-col md:flex-row items-center gap-12">
-      <h2 class="text-3xl font-bold mb-6" style="text-align: center;" mb="">Tentang saya</h2>
+    <section id="about" class="py-20 px-8 bg-gray-950 text-gray-100">
+      <!-- Judul -->
+      <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">Tentang Saya</h2>
 
+      <!-- Isi konten -->
+      <div class="flex flex-col md:flex-row items-center gap-12 max-w-5xl mx-auto">
+        <!-- Foto -->
+        <img src="image/COACH DIDI.jpg" alt="M. Sulaiman Kurdi" class="w-80 h-auto rounded-xl shadow-lg" data-aos="fade-right" data-aos-duration="1000" />
 
-      <img src="image/COACH DIDI.jpg" alt="M. Sulaiman Kurdi" width="400" height="300">
+        <!-- Info -->
+        <div data-aos="fade-left" data-aos-duration="1000">
+          <ul class="space-y-4 text-lg mb-6">
+            <li>🎓 Pendidikan Olahraga</li>
+            <li>📜 Sertifikat Personal Trainer</li>
+            <li>💪 Pengalaman melatih > 5 tahun</li>
+            <li>🎯 Visi/Misi: Membantu orang hidup sehat & bugar</li>
+          </ul>
 
-        <ul class="space-y-4">
-          <li>🎓 Pendidikan Olahraga</li>
-          <li>📜 Sertifikat Personal Trainer</li>
-          <li>💪 Pengalaman melatih > 5 tahun</li>
-          <li>🎯 Visi/Misi: Membantu orang hidup sehat & bugar</li>
-        </ul>
+          <!-- CTA Buttons -->
+          <div class="flex gap-4" data-aos="zoom-in" data-aos-delay="300">
+            <a href="#portfolio" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md transition"> 📜 Lihat Sertifikat Saya </a>
+            <a href="#contact" class="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md transition"> 📩 Hubungi Saya </a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -110,5 +153,10 @@
     <footer class="bg-black py-6 text-center text-gray-400">
       <p>© 2025 Sulaiman PT | Personal Trainer</p>
     </footer>
+    <!-- Tambahkan AOS JS sebelum </body> -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
   </body>
 </html>
